@@ -60,13 +60,13 @@ Os .csv estão armazenados na pasta data. E exportados para a plataforma do data
 ### 4. Camadas Bronze
 
 Os arquivos notebooks com sufixo bronze presentes no diretório src fazem referência a camada bronze. Nessa camada os arquivos .csv foram lidos e 3 Tabelas
-foram criadas, a tabela com [chamados](scr/Chamados1746_Bronze) ao 1746(chamados1746_bronze), a tabela com os [bairros](scr/Bairro_Bronze) do Rio (bairros_bronze) e a tabela com os [eventos](scr/Eventos_Bronze) realizados no período de 2022 à 2023 no Rio de Janeiro.
+foram criadas, a tabela com [chamados](scr/Chamados1746_Bronze.ipynb) ao 1746(chamados1746_bronze), a tabela com os [bairros](scr/Bairro_Bronze.ipynb) do Rio (bairros_bronze) e a tabela com os [eventos](scr/Eventos_Bronze.ipynb) realizados no período de 2022 à 2023 no Rio de Janeiro.
 
 ### 5. Camadas Prata
 
 Os arquivos notebooks com sufixo prata presentes no diretório scr fazem referência a camada prata. Nessa camada as tabelas geradas na camada bronze foram lidas e 3 Tabelas
-foram criadas, a tabela com [chamados](scr/Chamados1746_Prata)ao 1746(chamados1746_prata), a tabela com os [bairros](scr/Bairro_Prata) do Rio (bairros_prata) e a tabela com os 
-[eventos](scr/Eventos_Prata) realizados no período de 2022 à 2023 no Rio de Janeiro.
+foram criadas, a tabela com [chamados](scr/Chamados1746_Prata.ipynb)ao 1746(chamados1746_prata), a tabela com os [bairros](scr/Bairro_Prata.ipynb) do Rio (bairros_prata) e a tabela com os 
+[eventos](scr/Eventos_Prata.ipynb) realizados no período de 2022 à 2023 no Rio de Janeiro.
 Nessas camadas foram realizadas a retirada de dados com o id e data_inicio faltantes e colunas desnecessárias para futuras consultas. Assim como atualização do schema
 de cada tabela com os tipagem dos dados corretas. Os schemas de cada tabela estão disponíveis na pasta images e uma tabela representando o mesmo esta disponivel abaixo.
 

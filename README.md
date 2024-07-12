@@ -56,9 +56,11 @@ A plataforma escolhida para realização das tarefas de ETL foi o Databricks Com
 o que é ideal para o aprendizado do MVP sem correr o risco de pagar a mensalidade. Com ele é possível utilizar um micro-cluster para realização de
 toda computação e análise de dados em grande escala.
 
-### 3. Armazenamento
+### 3. Carga e Modelagem
 
-Os .csv estão armazenados na pasta data. E exportados para a plataforma do databricks.
+Os .csv estão armazenados na pasta data. E exportados para a plataforma do databricks. Nela foi optado por se utilizar a aquitetura Medallion,
+onde na camada bronze será feita o armazenamento direto dos dados. Na camada prata será feita a limpeza desses dados. E na última camada os dados
+estão prontos para análises de BI.
 
 ### 4. Camadas Bronze
 
@@ -107,7 +109,7 @@ Nessa [camada(Ouro.ipynb)](scr/Ouro.ipynb) foram realizadas as consultas às tab
 
 ## Qualidade dos Dados
 
-Os dados já possuiam, à priori, uma qualidade relativamente boa, os dados com valores null de identificadores e de data_inicio dos chamados foram retirados.
+Os dados já possuiam, à priori, uma qualidade relativamente boa, os dados com valores null de identificadores e de data_inicio das tabelas foram retirados.
 
 ## Análises e Resultados
 

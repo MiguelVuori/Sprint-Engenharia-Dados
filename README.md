@@ -44,7 +44,7 @@ A estrutura do projeto foi divida em camadas Bronze, Prata e Ouro através do de
 
 Os dados foram obtidos do site do [DATA.RIO](https://www.data.rio/). Esse site é um portal de dados aberto da prefeitura do Rio
 de Janeiro. Nele foram obtidos os dados relativos aos chamados à central 1746 do rio e também uma tabela de eventos do Rio de Janeiro entre os
-anos de 2022 e 2023. Optei por baixar os dados em Dados em CSV e adicio-los a plataforma do databricks para futuras análises.
+anos de 2022 e 2023. Optei por baixar os dados em Dados em CSV e adiciona-los a plataforma do databricks para futuras análises.
 
 ### 2. Plataforma para Execução das Tarefas
 

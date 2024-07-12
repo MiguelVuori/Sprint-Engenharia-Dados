@@ -9,6 +9,9 @@
     - [3. Formato e Armazenamento](#3-formato-e-armazenamento)
     - [4. Camadas Bronze](#4-camada_bronze)
     - [5. Camadas Prata](#5-camada-prata)
+       - [5.1. bairros prata](#51-bairros-prata)
+       - [5.2. chamados1746 prata](#52-chamados1746-prata)
+       - [5.3. eventoss prata](#53-eventos-prata)
     - [6. Camada Ouro](#6-camada-ouro)
 5. [Qualidade dos Dados](#qualidade-dos-dados)
 6. [Análises e Resultados](#análises-e-resultados)
@@ -106,7 +109,7 @@ Nessa [camada(Ouro.ipynb)](scr/Ouro.ipynb) foram realizadas as consultas às tab
 
 Os dados já possuiam, à priori, uma qualidade relativamente boa, os dados com valores null de identificadores e de data_inicio dos chamados foram retirados.
 
-## Análise e Resultados
+## Análises e Resultados
 
 Observando às consultas feitas na camada [Ouro](scr/Ouro.ipynb) podemos responder as perguntas feitas no Objetivo do Trabalho. Os seguintes resultados foram obtidos:
 

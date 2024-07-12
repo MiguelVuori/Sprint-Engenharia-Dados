@@ -27,6 +27,7 @@ Janeiro. Essa plataforma inclui à extração dos dados, processamento e visuali
 Dessa forma seria possível à tomada de decisão a partir das informações obtidas. As seguintes perguntas foram desenvolvidas
 para isso:
 
+- Quais os bairros com maior número de chamados abertos?
 - Houve um aumento do número de chamados de 2022 à 2023 relativo a reclamação de pertubação do sossego?
 - Há uma diferença significativa no número de chamados de pertubação do sossego em dias de evento (Rock in Rio, Reveillon, Carnaval)?
 
@@ -58,19 +59,48 @@ Os .csv estão armazenados na pasta data. E exportados para a plataforma do data
 
 ### 4. Camadas Bronze
 
-Os arquivos notebooks com sufixo bronze presentes no diretório scr fazem referência a camada bronze. Nessa camada os arquivos .csv foram lidos e 2 Tabelas
-foram criadas, a tabela com chamados ao 1746(chamados1746_bronze) e a tabela com os eventos(eventos_bronze) realizados no período de 2022 à 2023 no Rio de Janeiro.
+Os arquivos notebooks com sufixo bronze presentes no diretório src fazem referência a camada bronze. Nessa camada os arquivos .csv foram lidos e 3 Tabelas
+foram criadas, a tabela com [chamados](scr/Chamados1746_Bronze) ao 1746(chamados1746_bronze), a tabela com os [bairros](scr/Bairro_Bronze) do Rio (bairros_bronze) e a tabela com os [eventos](scr/Eventos_Bronze) realizados no período de 2022 à 2023 no Rio de Janeiro.
 
 ### 5. Camadas Prata
 
-Os arquivos notebooks com sufixo prata presentes no diretório scr fazem referência a camada prata. Nessa camada as tabelas geradas na camada bronze foram lidas e 2 Tabelas
-foram criadas, a tabela com chamados ao 1746(chamados1746_prata) e a tabela com os eventos(eventos_prata) realizados no período de 2022 à 2023 no Rio de Janeiro.
-Nessas camadas foram realizadas a retirada de dados com o id e data_inicio faltantes, colunas essas que serão utilizas em consultas posteriores. 
+Os arquivos notebooks com sufixo prata presentes no diretório scr fazem referência a camada prata. Nessa camada as tabelas geradas na camada bronze foram lidas e 3 Tabelas
+foram criadas, a tabela com [chamados](scr/Chamados1746_Prata)ao 1746(chamados1746_prata), a tabela com os [bairros](scr/Bairro_Prata) do Rio (bairros_prata) e a tabela com os 
+[eventos](scr/Eventos_Prata) realizados no período de 2022 à 2023 no Rio de Janeiro.
+Nessas camadas foram realizadas a retirada de dados com o id e data_inicio faltantes e colunas desnecessárias para futuras consultas. Assim como atualização do schema
+de cada tabela com os tipagem dos dados corretas. Os schemas de cada tabela estão disponíveis na pasta images e uma tabela representando o mesmo esta disponivel abaixo.
+
+#### 5.1. [bairro_prata](images/schema_bairros.jpeg)
+
+| Coluna        | Tipo   | Descrição                                               |
+|---------------|--------|---------------------------------------------------------|
+| id_bairro     | string | Código do bairro dado pela prefeitura do Rio de Janeiro.|
+| nome          | string | Nome do bairro                                          |
+| subprefeitura | string | Nome da subprefeitura a que pertence o bairro.          |
+
+#### 5.2. [chamados1746_prata](images/schema_chamados.jpeg)
+
+| Coluna      | Tipo   | Descrição                                                                                                                              |
+|-------------|--------|----------------------------------------------------------------------------------------------------------------------------------------|
+| id_chamado  | string | Identificador de cada chamado
+| data_inicio | date   | Data de abertura do chamado                                                                                                            |
+| data_fim    | date   | Data de fechamento do chamado. O chamado é fechado quando o pedido é atendido ou quando se percebe que o pedido não pode ser atendido. |
+| subtipo     | string | Subtipo do chamado                                                                                                                     |
+| categoria   | string | Categoria do chamado. Exemplo: Serviço, informação, sugestão, elogio, reclamação, crítica.                                             |
+| id_bairro   | string | Identificador único, no banco de dados, do bairro onde ocorreu o fato que gerou o chamado.                                             |
+
+#### 5.3. [eventos_prata](images/schema_eventos.jpeg)
+
+| Coluna       | Tipo   | Descrição                 |
+|--------------|--------|---------------------------|
+| evento       | string | Nome do evento            |
+| data_inicial | date   | Data de inicio do evento  |
+| data_final   | date   | Data de termino do evento |
 
 
 ### 6. Camada Ouro
 
-Nessa camada(Ouro.ipynb) foram realizadas as consultas às tabelas da camada prata onde foram respondidas as dúvidas relativas ao objetivo do projeto.
+Nessa [camada(Ouro.ipynb)](scr/Ouro.ipynb) foram realizadas as consultas às tabelas da camada prata onde foram respondidas as dúvidas relativas ao objetivo do projeto.
 
 ## Qualidade dos Dados
 
@@ -78,9 +108,10 @@ Os dados já possuiam, à priori, uma qualidade relativamente boa, os dados com 
 
 ## Análise e Resultados
 
-Observando às consultas feitas na camada Ouro podemos responder as perguntas feitas no Objetivo do Trabalho. Os seguintes resultados foram obtidos:
+Observando às consultas feitas na camada [Ouro](scr/Ouro.ipynb) podemos responder as perguntas feitas no Objetivo do Trabalho. Os seguintes resultados foram obtidos:
 
-- 
+- Os bairros com maiores número de reclamações são, respectivemante, Cocapabana, Botafogo e Tijuca.
+- O número de chamados abertos de 2022 para 2023 dimunuiram de 31124 para 11706.
 - A média diária de reclamações relativo à pertubação do sossego foram maiores em dias de evento. A média em dias de evento é 86.7, enquanto
 a média diária normalmente é de 61.9. Mais ou menos 15 reclamações à mais. O que era de se esperar, pois o volume do som produzidos nesses eventos são mais
 altos do que em dias comuns.
@@ -91,6 +122,8 @@ A parte mais desafiadora desse projeto sem dúvida foi como utilizar a plataform
 com os dados da prefeitura na plataforma do databricks community, porém não consegui adcionar minhas credênciais de forma efetiva, então optei por baixar os
 dados em arquivos csv.
 
-Uma forma de enriquecer o projeto seria automatizar essa inserção de dados direto no databricks sem a necessidade de baixar os arquivos csv. Além disso acredito que a inserção de diferentes tabelas poderiam gerar insights mais valiosos, como seria o caso se fosse adicionado informações sobre os bairros no Rio de Janeiro. 
+Apesar desses desafios, eu consegui de realizar com sucesso os objetivos traçados no inicio desse projeto de forma satisfatória. 
+
+Uma forma de enriquecer o projeto seria automatizar a inserção de dados direto no databricks sem a necessidade de baixar os arquivos csv. Além disso acredito que a inserção de diferentes tabelas poderiam gerar insights mais valiosos, como seria o caso se fosse adicionado informações sobre violência na cidade. Nesse caso poderiamos fazer uma análise da violência no Rio. 
 
 Ainda a utilização de uma conta paga no databricks poderia deixar o projeto mais automatizado com a utilização de workflows.
